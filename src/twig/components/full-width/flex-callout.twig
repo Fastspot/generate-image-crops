@@ -1,0 +1,50 @@
+<div class="flex_callout">
+	<div class="flex_callout_media">
+		{% if video %}
+		{% include par ~ "background-video.twig" with {
+			class: "flex_callout",
+			dimension: img.wide.lrg,
+			image: background,
+			alt: "",
+			video: video
+		} %}
+		{% else %}
+		{% include par ~ "background.twig" with {
+			class: "flex_callout",
+			image: background,
+			alt: "",
+			sources: {
+				"0px": img.wide.med,
+				"980px": img.wide.lrg
+				"1220px": img.wide.xlrg
+			}
+		} %}
+		{% endif %}
+	</div>
+	<div class="flex_callout_content">
+		<div class="fs-row">
+			<div class="fs-cell">
+				<div class="flex_callout_inner">
+					<div class="flex_callout_header">
+						<h2 class="flex_callout_title">{{ title }}</h2>
+						{% if label %}
+						<div class="flex_callout_label">{{ label }}</div>
+						{% endif %}
+					</div>
+					<div class="flex_callout_body">
+						<div class="flex_callout_description">
+							<p>{{ description }}</p>
+						</div>
+					</div>
+					{% if links %}
+					<div class="flex_callout_links">
+						{% for link in links %}
+						{{ site.button("flex_callout", link.name, "arrow_right", link.href) }}
+						{% endfor %}
+					</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

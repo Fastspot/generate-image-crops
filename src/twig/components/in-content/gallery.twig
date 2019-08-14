@@ -1,0 +1,47 @@
+<div class="js-gallery gallery">
+	{% if title %}
+	<div class="gallery_header">
+		<h2 class="gallery_title">{{ title }}</h2>
+	</div>
+	{% endif %}
+	<div class="gallery_body">
+		<div class="js-gallery-counter gallery_counter"></div>
+		<div class="js-gallery-photo-counter gallery_counter"></div>
+		<div class="js-gallery-video-counter gallery_counter"></div>
+		<div class="js-carousel gallery_items" role="region" aria-label="gallery" tabindex="0" itemscope itemtype="http://schema.org/ImageGallery" data-carousel-options='{"theme": "controls_base pagination_dark", "contained": false{% if title %}, "labels": {"controls": "{{ title }} carousel controls", "pagination": "{{ title }} carousel pagination"}{% endif %}}'>
+			{% for item in items %}
+			<div class="gallery_item{% if item.caption is empty %} gallery_item_no_caption{% endif %}{% if item.video %} gallery_item_has_video{% else %} gallery_item_has_image{% endif %}">
+				<div class="gallery_count">
+					<span class="gallery_count_number">{{ "%02d"|format(loop.index) }}</span>
+					<span class="gallery_count_label">of</span>
+					<span class="gallery_count_number">{{ "%02d"|format(loop.length) }}</span>
+				</div>
+				<figure class="gallery_item_figure" role="group"{% if item.caption %} aria-label="{{ item.caption|striptags }}"{% endif %} itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+					<span class="gallery_item_media">
+						{% include par ~ "image.twig" with {
+							class: "gallery_item",
+							alt: "",
+							image: item.image,
+							dimension: img.wide.med,
+							itemprop: ""
+						} %}
+						{% if item.video %}
+						<a class="js-video-appender gallery_item_link" href="{{ item.video }}" target="_blank" itemprop="contentUrl">
+							<span class="gallery_item_link_inner">
+								<span class="gallery_item_link_icon">{{ site.icon("play") }}</span>
+								<span class="gallery_item_link_label">Play</span>
+							</span>
+						</a>
+						{% endif %}
+					</span>
+					{% if item.caption %}
+					<figcaption class="gallery_item_figcaption" itemprop="caption description">
+						<p>{{ item.caption }}</p>
+					</figcaption>
+					{% endif %}
+				</figure>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
