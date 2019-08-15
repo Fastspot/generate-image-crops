@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+		<html lang="en">
+			<head>
+				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+				<title>Component Image Crops</title>
+				<style>
+					html {
+						height: 100%;
+			
+						font-family: "Neue Haas Grotesk Text Std", Helvetica, Arial, sans-serif;
+						overflow-y: scroll;
+					}
+			
+					body {
+						max-width: 780px;
+			
+						margin: 0 auto;
+						padding: 40px 20px;
+					}
+					
+					.crops_item {
+						border: 2px solid #eee;
+						margin-bottom: 40px;
+					}
+
+					.crops_item_title {
+						border-bottom: 1px solid #000;
+						margin: 0;
+						padding: 21px 20px 20px;
+					}
+
+					.crops_item_list {
+						list-style: none;
+						margin: 0;
+						padding: 0;
+					}
+
+					.crop {
+						padding: 11px 40px;
+					}
+
+					.crop:nth-of-type(even) {
+						background: #eee;
+					}
+
+					.crop-size {}
+
+					.crop-size:after {
+						color: #999;
+						content: "•";
+						display: inline-block;
+						margin: 0 6px 0 10px;
+						vertical-align: middle;
+					}
+
+					.crop-name {}
+				</style>
+			</head>
+			<body>
+				<header class="crops_header">
+					<h1 class="crops_title">Component Image Crops</h1>
+				</header>
+				<main class="crops_main">
+					<div class="crops_items">
+						<div class="crops_item">
+					<h2 class="crops_item_title">flex-callout</h2>
+					<ul class="crops_item_list"><li class="crop">
+									<span class="crop-size">1220x686</span>
+									<span class="crop-name">wide.lrg</span>
+								</li><li class="crop">
+									<span class="crop-size">980x552</span>
+									<span class="crop-name">wide.med</span>
+								</li><li class="crop">
+									<span class="crop-size">1440x810</span>
+									<span class="crop-name">wide.xlrg</span>
+								</li></ul>
+				</div><div class="crops_item">
+					<h2 class="crops_item_title">gallery</h2>
+					<ul class="crops_item_list"><li class="crop">
+									<span class="crop-size">980x552</span>
+									<span class="crop-name">wide.med</span>
+								</li></ul>
+				</div><div class="crops_item">
+					<h2 class="crops_item_title">nutter</h2>
+					<ul class="crops_item_list"><li class="crop">
+									<span class="crop-size">980x552</span>
+									<span class="crop-name">wide.med</span>
+								</li><li class="crop">
+									<span class="crop-size">1220x686</span>
+									<span class="crop-name">wide.lrg</span>
+								</li><li class="crop">
+									<span class="crop-size">1440x810</span>
+									<span class="crop-name">wide.xlrg</span>
+								</li></ul>
+				</div>
+					</div>
+				</main>
+			</body>
+		</html>
