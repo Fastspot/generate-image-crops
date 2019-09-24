@@ -12,35 +12,33 @@ module.exports = function(customOptions) {
 	var cropsHTML = '';
 	var resultsHTML = '';
 
-	fs.readdirSync(options.base).forEach(folder => {
-		fs.readdirSync(options.base + '/' + folder).forEach(file => {
-			var content = fs.readFileSync(options.base + '/' + folder + '/' + file, 'utf8');
-			var sizes = content.match(/(img\.[a-z]*\.[a-z]*)/g);
-			var uniqueSizes = [...new Set(sizes)];
+	fs.readdirSync(options.base).forEach(file => {
+		var content = fs.readFileSync(options.base + '/' + file, 'utf8');
+		var sizes = content.match(/(img\.[a-z]*\.[a-z]*)/g);
+		var uniqueSizes = [...new Set(sizes)];
 
-			cropsHTML += 
-				`<div class="crops_item">
-					<h2 class="crops_item_title">${ file.replace('.twig', '') }</h2>
-					<ul class="crops_item_list">`;
-			
-			for (var x = 0; x < uniqueSizes.length; x++) {
-				for (var crop in options.packageJson.img) {
-					for (var size in options.packageJson.img[crop]) {
-						if ('img.' + crop + '.' + size == uniqueSizes[x]) {
-							cropsHTML += 
-								`<li class="crop">
-									<span class="crop-size">${ options.packageJson.img[crop][size].width }x${ options.packageJson.img[crop][size].height }</span>
-									<span class="crop-name">${ crop }.${ size }</span>
-								</li>`;
-						}
+		cropsHTML += 
+			`<div class="crops_item">
+				<h2 class="crops_item_title">${ file.replace('.twig', '') }</h2>
+				<ul class="crops_item_list">`;
+		
+		for (var x = 0; x < uniqueSizes.length; x++) {
+			for (var crop in options.packageJson.img) {
+				for (var size in options.packageJson.img[crop]) {
+					if ('img.' + crop + '.' + size == uniqueSizes[x]) {
+						cropsHTML += 
+							`<li class="crop">
+								<span class="crop-size">${ options.packageJson.img[crop][size].width }x${ options.packageJson.img[crop][size].height }</span>
+								<span class="crop-name">${ crop }.${ size }</span>
+							</li>`;
 					}
 				}
 			}
+		}
 
-			cropsHTML +=
-					`</ul>
-				</div>`;
-		});
+		cropsHTML +=
+				`</ul>
+			</div>`;
 	});
 
 	resultsHTML =
